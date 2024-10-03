@@ -2,7 +2,84 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@* <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</div> *@
+@{
+    List<LocationModel> ListLocation = new List<LocationModel>();
+    ListLocation = Model;
+}
+
+<form method="post" action="~/Home/index" class="needs-validation" novalidate id="create-fpj" name="create-fpj">
+    <div class="row g-0 my-3">
+        <div class="col-lg-12">
+            <div class="card mb-3 h-lg-auto">
+                <div class="card-body bg-light border-warning">
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="col-lg-12">
+                                    <label for="organizerSingle">Agreement Tenor </label>
+                                    <input type="text" class="form-control" id="InputAgreementTenor" name="InputAgreementTenor" />
+                                </div>
+                                <div class="col-lg-12">
+                                    <label for="organizerSingle">Branch Id </label>
+                                    <input type="text" class="form-control" id="InputBranchId" name="InputBranchId" />
+                                </div>
+                                <div class="col-lg-12">
+                                    <label for="organizerSingle">No. BPKB </label>
+                                    <input type="text" class="form-control" id="InputNoBPKB" name="InputNoBPKB" />
+                                </div>
+                                <div class="col-lg-12">
+                                    <label for="organizerSingle">Tanggal BPKB In </label>
+                                    <input type="date" class="form-control" id="InputTanggalBPKBIn" name="InputTanggalBPKBIn" />
+                                </div>
+                                <div class="col-lg-12">
+                                    <label for="organizerSingle">Tanggal BPKB </label>
+                                    <input type="date" class="form-control" id="InputTanggalBPKB" name="InputTanggalBPKB" />
+                                </div>
+                                <div class="col-lg-12">
+                                    <label for="organizerSingle">No. Faktur </label>
+                                    <input type="text" class="form-control" id="InputNoFaktur" name="InputNoFaktur" />
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="col-lg-12">
+                                    <label for="organizerSingle">Tanggal Faktur </label>
+                                    <input type="date" class="form-control" id="InputTanggalFaktur" name="InputTanggalFaktur" />
+                                </div>
+                                <div class="col-lg-12">
+                                    <label for="organizerSingle">No. Polisi </label>
+                                    <input type="text" class="form-control" id="InputNoPolisi" name="InputNoPolisi" />
+                                </div>
+                                <div class="col-lg-12">
+                                    <label for="organizerSingle">Lokasi Penyimpanan </label>
+                                    <select class="form-select" id="rb-lokasi" name="rb-lokasi" size="1">
+                                        <option value="">Select Lokasi Penyimpanan</option>
+                                        @for(int i=0; i<ListLocation.Count; i++)
+                                        {
+                                            <option value="@ListLocation[i].location_id">@ListLocation[i].location_name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-6" align="center">
+                        <button class="btn btn-warning btn-lg w-100" id="btn-cancel" name="btn-cancel">Cancel</button>
+                    </div>
+                    <div class="col-lg-6" align="center">
+                        <button class="btn btn-warning btn-lg w-100" id="btn-save" type="submit" name="btn-save">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

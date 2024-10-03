@@ -1,0 +1,41 @@
+﻿@model MCFTechnicalTestFrontEnd.Models.LoginModel;
+
+<!DOCTYPE html>
+
+<form method="post" action="~/Login/Login" class="needs-validation" novalidate id="login" name="login">
+    <div class="row g-0 my-3">
+        <div class="col-lg-12">
+            <div class="card mb-3 h-lg-auto">
+                <div class="card-body bg-light border-warning">
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-lg-12">
+                                    <label for="organizerSingle">Username </label>
+                                    <input type="text" class="form-control" id="InputUsername" name="InputUsername" />
+                                </div>
+                                <div class="col-lg-12">
+                                    <label for="organizerSingle">Password </label>
+                                    <input type="password" class="form-control" id="InputPassword" name="InputPassword"/>
+                                </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12" align="center">
+                            <button class="btn btn-warning btn-lg w-100" id="btn-login" type="submit" name="btn-login">Login</button>
+
+                            @if (ViewData["Message"] != null)
+                            {
+                                <br/>
+                                <label>@ViewData["Message"]</label>
+                            }
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
