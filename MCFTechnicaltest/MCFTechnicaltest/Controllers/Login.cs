@@ -26,10 +26,11 @@ namespace MCFTechnicaltest.Controllers
                 && a.password == user.password 
                 &&  a.is_active==true).ToList();
 
-                //if(result.Count == 0) check = false;
-                //else check = true;
-                _userLogin.username = result.FirstOrDefault().user_name;
-                _userLogin.password = result.FirstOrDefault().password;
+                if(result.Count > 0)
+                {
+                    _userLogin.username = result.FirstOrDefault().user_name;
+                    _userLogin.password = result.FirstOrDefault().password;
+                }
             }
             catch(Exception ex)
             {
@@ -44,7 +45,7 @@ namespace MCFTechnicaltest.Controllers
             UserLogin _user = null;
             Login login = new Login(_configuration, _context);
             _user = login.CheckUser(user);
-            if (_user != null)
+            if (_user.username != null && _user.password != null)
             {
                 _user = new UserLogin { username =  _user.username};
             }

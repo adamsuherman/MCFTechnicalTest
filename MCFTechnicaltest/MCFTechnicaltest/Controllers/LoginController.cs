@@ -29,7 +29,7 @@ namespace MCFTechnicaltest.Controllers
         {
             Login login = new Login(_config, _context);
             var users = login.AuthenticateUser(user);
-            if(users != null)
+            if(users.username != null)
             {
                 var token = login.GenerateToken(users);
                 return Ok(new { token = token });
