@@ -1,4 +1,5 @@
 ﻿using MCFTechnicaltest.Context;
+using MCFTechnicaltest.Model;
 using MCFTechnicaltest.Models.CodingTest;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +16,7 @@ namespace MCFTechnicaltest.Controllers
         private readonly Transaction _transaction;
         List<ms_storage_location> _msStorageLocation;
         private readonly CodingTestContext _context;
+        ResultObject result;
         public TransactionController(IConfiguration configuration, CodingTestContext context) 
         {
             _configuration = configuration;
@@ -30,9 +32,10 @@ namespace MCFTechnicaltest.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveTransaction()
+        public async Task<IActionResult> SaveTransaction(tr_bpkb request)
         {
-            return null;
+            result = await _transaction.SaveData(request);
+            return new OkObjectResult(result);
         }
     }
 }

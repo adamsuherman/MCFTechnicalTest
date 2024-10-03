@@ -1,6 +1,8 @@
 ﻿using MCFTechnicaltest.Context;
+using MCFTechnicaltest.Model;
 using MCFTechnicaltest.Models.CodingTest;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 
 namespace MCFTechnicaltest.Controllers
 {
@@ -28,5 +30,23 @@ namespace MCFTechnicaltest.Controllers
 
             return data;
         } 
+
+        public async Task<ResultObject> SaveData(tr_bpkb request)
+        {
+            ResultObject result = new ResultObject();
+            try
+            {
+                _context.Add(request);
+                _context.SaveChanges();
+                result.ResultCode = "1";
+                result.ResultMessage = "SUCCESS";
+            }
+            catch(Exception ex)
+            {
+                result.ResultCode = "0";
+                result.ResultMessage = ex.Message;
+            }
+            return result;
+        }
     }
 }
