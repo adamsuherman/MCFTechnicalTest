@@ -8,10 +8,6 @@ namespace MCFTechnicaltest.Context
 {
     public partial class CodingTestContext : DbContext
     {
-        public CodingTestContext()
-        {
-        }
-
         public CodingTestContext(DbContextOptions<CodingTestContext> options)
             : base(options)
         {
