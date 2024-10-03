@@ -17,34 +17,36 @@ namespace MCFTechnicaltest.Controllers
             _context = context;
         }
 
-        public bool CheckUser(UserLogin user)
+        public UserLogin CheckUser(UserLogin user)
         {
-            bool check = false;
+            UserLogin _userLogin = new UserLogin();
             try
             {
                 var result = _context.ms_user.Where(a => a.user_name == user.username 
                 && a.password == user.password 
                 &&  a.is_active==true).ToList();
 
-                if(result.Count == 0) check = false;
-                else check = true;
+                //if(result.Count == 0) check = false;
+                //else check = true;
+                _userLogin.username = result.FirstOrDefault().user_name;
+                _userLogin.password = result.FirstOrDefault().password;
             }
             catch(Exception ex)
             {
-                string test = ex.Message;
-                check= false;
+
             }
 
-            return check;
+            return _userLogin;
         }
 
         public UserLogin AuthenticateUser(UserLogin user)
         {
             UserLogin _user = null;
             Login login = new Login(_configuration, _context);
-            if (CheckUser(user))
+            _user = login.CheckUser(user);
+            if (_user != null)
             {
-                _user = new UserLogin { username = "Adam Suherman" };
+                _user = new UserLogin { username =  _user.username};
             }
             return _user;
         }
